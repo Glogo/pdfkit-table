@@ -25,6 +25,11 @@ class PDFDocumentWithTables extends PDFDocument {
    * @param {Function} callback 
    */
   addBackground ({x, y, width, height}, fillColor, fillOpacity, callback) {
+    // Do nothing if fillColor is not set
+    if(!fillColor) {
+      typeof callback === 'function' && callback(this);
+      return;
+    };
 
     // validate
     fillColor || (fillColor = 'grey');
